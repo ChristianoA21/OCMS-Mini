@@ -2,6 +2,8 @@ package ocms.mini;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 //Menambah class role user
     class Role {
@@ -23,6 +25,9 @@ import java.util.Scanner;
         String kategori;
         String status;
         String remark;
+        LocalDateTime timestamp;
+        String tanggaldibuat;
+        String updateTerakhir;
 
 //Parameter String status pada array dihilangkan
 //Menambah inisiasi remark = null        
@@ -34,6 +39,8 @@ import java.util.Scanner;
         this.kategori = kategori;
         this.status = "Dikirim";
         this.remark =null;
+        this.timestamp = LocalDateTime.now();
+        this.tanggaldibuat = this.timestamp.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 }
 public class OCMSMini {
@@ -212,7 +219,8 @@ public class OCMSMini {
                 System.out.println("Deskripsi: " + complain.deskripsi);
                 System.out.println("Kategori: " + complain.kategori);
                 System.out.println("Status: " + complain.status);
-                
+                System.out.println("Tanggal dibuat: " + complain.tanggaldibuat);
+                System.out.println("Update Terakhir: " + complain.updateTerakhir);
 //Menambahkan catatan (remark) pada status 'pending' dan 'ditolak'
             if (complain.remark != null) {
                 System.out.println("Catatan: " + complain.remark);
@@ -305,6 +313,8 @@ public class OCMSMini {
                 }
                 
                 System.out.println("Status pengaduan berhasil diperbarui.\n");
+                String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                complain.updateTerakhir = timestamp;
                 found = true;
                 break;
             }
