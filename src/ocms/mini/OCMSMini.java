@@ -28,6 +28,7 @@ import java.time.format.DateTimeFormatter;
         LocalDateTime timestamp;
         String tanggaldibuat;
         String updateTerakhir;
+        String selesai;
 
 //Parameter String status pada array dihilangkan
 //Menambah inisiasi remark = null        
@@ -221,6 +222,7 @@ public class OCMSMini {
                 System.out.println("Status: " + complain.status);
                 System.out.println("Tanggal dibuat: " + complain.tanggaldibuat);
                 System.out.println("Update Terakhir: " + complain.updateTerakhir);
+                System.out.println("Selesai: " + complain.selesai);
 //Menambahkan catatan (remark) pada status 'pending' dan 'ditolak'
             if (complain.remark != null) {
                 System.out.println("Catatan: " + complain.remark);
@@ -247,7 +249,9 @@ public class OCMSMini {
                 System.out.println("Deskripsi: " + complain.deskripsi);
                 System.out.println("Kategori: " + complain.kategori);
                 System.out.println("Status: " + complain.status);
-                
+                System.out.println("Tanggal dibuat: " + complain.tanggaldibuat);
+                System.out.println("Update Terakhir: " + complain.updateTerakhir);
+                System.out.println("Selesai: " + complain.selesai);
 //Menambahkan catatan (remark) pada status 'pending' dan 'ditolak' 
             if (complain.remark != null) {
                 System.out.println("Catatan: " + complain.remark);
@@ -295,6 +299,8 @@ public class OCMSMini {
                         break;
                     case 3:
                         complain.status = "Selesai";
+                        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                        complain.selesai = timestamp;
                         break;
                     case 4:
                         complain.status = "Pending";
